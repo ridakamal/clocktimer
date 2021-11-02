@@ -1,17 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class App extends React.Component 
+  { constructor(props)
+    
+    { 
+      super(props)
+    this.state = {time : new Date().toLocaleTimeString()}
+    this.tick = this.tick.bind(this)
+    setInterval(this.tick, 1000);
+   }
+   tick()
+   { 
+     //this changes the state on the browser window
+     this.setState ({time:new Date().toLocaleTimeString()})
+   } 
+   
+render () {
+    return <div>
+      <h1>Hello, world!</h1> 
+      <h2> It is {this.state.time} now </h2>
+     {/* <h2>It is {new Date().toLocaleTimeString()}.</h2> */}
+    </div>
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+}   
+}
+
+ReactDOM.render(<App/>, document.getElementById('root'));
+
+
+
+
